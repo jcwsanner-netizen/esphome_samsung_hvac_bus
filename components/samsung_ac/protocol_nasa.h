@@ -75,7 +75,7 @@ namespace esphome
 
             // ===== Existing core mappings =====
             ENUM_in_operation_power = 0x4000,
-            ENUM_in_operation_display_led = 0x4010,
+            ENUM_in_operation_display_led = 0x400A,
             ENUM_in_operation_mode = 0x4001,
             ENUM_in_fan_mode = 0x4006, // Did not exists in xml...only in Remocon.dll code
             ENUM_in_fan_mode_real = 0x4007,
