@@ -533,6 +533,10 @@ namespace esphome
                 {
                     MessageSet display_led(MessageNumber::ENUM_in_operation_display_led);
                     display_led.value = request.display_led.value() ? 1 : 0;
+                    LOGD("NASA display LED send: message=0x%04X payload=%d state=%s",
+                         static_cast<uint16_t>(MessageNumber::ENUM_in_operation_display_led),
+                         display_led.value,
+                         request.display_led.value() ? "ON" : "OFF");
                     packet.messages.push_back(display_led);
                 }
 
@@ -540,6 +544,9 @@ namespace esphome
                 {
                     MessageSet filter_reset(MessageNumber::ENUM_in_filter_clean);
                     filter_reset.value = 1;
+                    LOGD("NASA filter reset send: message=0x%04X payload=%d",
+                         static_cast<uint16_t>(MessageNumber::ENUM_in_filter_clean),
+                         filter_reset.value);
                     packet.messages.push_back(filter_reset);
                 }
 
@@ -633,7 +640,12 @@ namespace esphome
                 queued.power = request.power;
 
             if (request.display_led)
+            {
+                LOGD("NASA display LED queue: message=0x%04X state=%s",
+                     static_cast<uint16_t>(MessageNumber::ENUM_in_operation_display_led),
+                     request.display_led.value() ? "ON" : "OFF");
                 queued.display_led = request.display_led;
+            }
 
             if (request.filter_reset)
                 queued.filter_reset = request.filter_reset;
