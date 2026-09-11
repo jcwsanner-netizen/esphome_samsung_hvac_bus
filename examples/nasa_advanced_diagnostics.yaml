@@ -1,0 +1,96 @@
+# NASA advanced diagnostics snippet
+#
+# Add the relevant blocks below to the existing samsung_ac.devices entry.
+# Indoor devices use 20.xx.xx addresses; the outdoor device uses 10.xx.xx.
+#
+# Start with the raw EEV and pressure values. Do not assume a pressure unit
+# until values from the target installation have been validated.
+
+# Example for an indoor unit:
+#
+# custom_sensor:
+#   - name: "Capacity request"
+#     message: 0x4211
+#     unit_of_measurement: "kW"
+#     accuracy_decimals: 2
+#     state_class: measurement
+#     filters:
+#       - lambda: return x / 8.6;
+#
+#   - name: "Absolute capacity"
+#     message: 0x4212
+#     unit_of_measurement: "kW"
+#     accuracy_decimals: 2
+#     state_class: measurement
+#     filters:
+#       - lambda: return x / 8.6;
+#
+#   - name: "EEV 1"
+#     message: 0x4217
+#     entity_category: diagnostic
+#
+#   - name: "EEV 2"
+#     message: 0x4218
+#     entity_category: diagnostic
+#
+# Example for the outdoor unit:
+#
+# custom_sensor:
+#   - name: "High pressure raw"
+#     message: 0x8206
+#     entity_category: diagnostic
+#
+#   - name: "Low pressure raw"
+#     message: 0x8208
+#     entity_category: diagnostic
+#
+#   - name: "Discharge temperature"
+#     message: 0x820A
+#     unit_of_measurement: "°C"
+#     accuracy_decimals: 1
+#     device_class: temperature
+#     state_class: measurement
+#     filters:
+#       - multiply: 0.1
+#
+#   - name: "Main EEV 1"
+#     message: 0x8229
+#     entity_category: diagnostic
+#
+#   - name: "Main EEV 2"
+#     message: 0x822A
+#     entity_category: diagnostic
+#
+#   - name: "Main EEV 3"
+#     message: 0x822B
+#     entity_category: diagnostic
+#
+#   - name: "Main EEV 4"
+#     message: 0x822C
+#     entity_category: diagnostic
+#
+#   - name: "Main EEV 5"
+#     message: 0x822D
+#     entity_category: diagnostic
+#
+#   - name: "EVI EEV"
+#     message: 0x822E
+#     entity_category: diagnostic
+#
+#   - name: "HR EEV"
+#     message: 0x822F
+#     entity_category: diagnostic
+#
+#   - name: "Outdoor operation capacity"
+#     message: 0x8233
+#     unit_of_measurement: "kW"
+#     accuracy_decimals: 2
+#     state_class: measurement
+#     filters:
+#       - lambda: return x / 8.6;
+#
+#   - name: "Compressor frequency"
+#     message: 0x8238
+#     unit_of_measurement: "Hz"
+#     accuracy_decimals: 1
+#     state_class: measurement
